@@ -5,6 +5,9 @@ using UnityEngine;
 public class Builder : Bee
 {
     //这个脚本负责，决定当前小蜜蜂的行为状态，以什么为目标。
+    [Tooltip("记忆体-拿蜜坐标")] [SerializeField] protected Vector3 PickHoney_Point;
+    [Tooltip("记忆体-建造坐标")] [SerializeField] protected Vector3 Build_Point;
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,13 +19,12 @@ public class Builder : Bee
     public void Update()
     {
 
-
-        Receive();
-
         Hunger();
         Build();
         Move();
 
+
+        Receive();
 
         Die();
 
@@ -54,7 +56,7 @@ public class Builder : Bee
                     }
 
                 }
-                else { Target_Point = TakeHoney_Point; }
+                else { Target_Point = PickHoney_Point; }
             }
             //如果口袋已满则开始变蜡
             if (storage.WAX_list.Count>0)
@@ -103,6 +105,7 @@ public class Builder : Bee
             default:
                 break;
         }
+   
     }
 
     public void TakeHoney()
@@ -116,10 +119,12 @@ public class Builder : Bee
                 storage.Check();
                 storage_col.Check();
 
-                TakeHoney_Point = col_Obj.transform.position;
+                PickHoney_Point = col_Obj.transform.position;
+
                 Mark();
+
             }
-     
+
         }
     }
     public void Mold()
@@ -138,8 +143,25 @@ public class Builder : Bee
                 Build_Point = col_Obj.transform.position;
                 Mark();
             }
+
         }
     }
+    protected override void Mark()
+    {
+        base.Mark();
+        phe_m.GetComponent<Pheromones>().PickHoney_Point = PickHoney_Point;
+        phe_m.GetComponent<Pheromones>().Build_Point = Build_Point;
 
+    }
+    protected override void Receive()
+    {
+        base.Receive();
+        if (phe_r)
+        {
+            PickHoney_Point = phe_r.GetComponent<Pheromones>().PickHoney_Point;
+            Build_Point = phe_r.GetComponent<Pheromones>().Build_Point;
+        }
 
+        
+    }
 }

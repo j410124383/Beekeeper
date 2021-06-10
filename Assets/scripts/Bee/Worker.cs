@@ -5,6 +5,10 @@ using UnityEngine;
 public class Worker : Bee
 {
     //这个脚本负责，决定当前小蜜蜂的行为状态，以什么为目标。
+    [Tooltip("记忆体-采集坐标")] [SerializeField] protected Vector3 PickPollen_Point;
+    [Tooltip("记忆体-卸货坐标")] [SerializeField] protected Vector3 Unload_Point;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,14 +20,14 @@ public class Worker : Bee
     public void Update()
     {
 
-
-        Receive();
-
         Hunger();
         Work();
         Move();
-        
- 
+
+
+        Receive();
+
+
         Die();
 
     }
@@ -32,26 +36,26 @@ public class Worker : Bee
     {
 
         //口袋空了，就去采集，满了就回去卸货
-        if (state !=State.HUNGER)
+        if (state != State.HUNGER)
         {
-             List<GameObject> L ;
+            List<GameObject> L;
 
             if (GetComponent<Storage>().state != Storage.State.FULL)
             {
                 //采集
                 state = State.PICKPOLLEN;
-                 L = GetComponent<Bee_Search>().Food_list;
+                L = GetComponent<Bee_Search>().Food_list;
                 if (L.Count > 0 && L[0] != null)
                 {
                     Target_Point = L[0].transform.position;
                 }
                 else { Target_Point = PickPollen_Point; }
             }
-            if (GetComponent<Storage>().state ==Storage.State.FULL)
+            if (GetComponent<Storage>().state == Storage.State.FULL)
             {
                 //回家
                 state = State.UNLOAD;
-                 L = GetComponent<Bee_Search>().Beehive_STORAGEROOM_list;
+                L = GetComponent<Bee_Search>().Beehive_STORAGEROOM_list;
                 if (L.Count > 0)
                 {
                     Target_Point = L[0].transform.position;
@@ -59,10 +63,8 @@ public class Worker : Bee
                 else { Target_Point = Unload_Point; }
             }
         }
-        
+
     }//工蜂特有的工作行为
-
-
 
     protected override void Behaviour()
     {
@@ -82,6 +84,7 @@ public class Worker : Bee
             default:
                 break;
         }
+
     }
 
     public void PickPollen()
@@ -118,4 +121,25 @@ public class Worker : Bee
         }
     }
 
+    protected override void Mark()
+    {
+        base.Mark();
+        phe_m.GetComponent<Pheromones>().PickPollen_Point = PickPollen_Point;
+        phe_m.GetComponent<Pheromones>().Unload_Point = Unload_Point;
+
+    }
+    protected override void Receive()
+    {
+        base.Receive();
+
+        if (phe_r)
+        {
+            PickPollen_Point = phe_r.GetComponent<Pheromones>().PickPollen_Point;
+            Unload_Point = phe_r.GetComponent<Pheromones>().Unload_Point;
+        }
+        
+
+
+
+    }
 }

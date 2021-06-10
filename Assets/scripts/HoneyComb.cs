@@ -13,6 +13,7 @@ public class HoneyComb : FindGM
     [Tooltip("地基状态的蜂穴")] public List<GameObject> Beehive_BG_list = new List<GameObject>();
     [Tooltip("毛坯状态的蜂穴")] public List<GameObject> Beehive_RC_list = new List<GameObject>();
     [Tooltip("仓库状态的蜂穴")] public List<GameObject> Beehive_SR_list = new List<GameObject>();
+    //[Tooltip("裸露的毛坯蜂穴")] public List<GameObject> Beehive_SR_list = new List<GameObject>();
 
     [Tooltip("空的的巢穴信息")] public List<GameObject> Beehive_EMPTY_list = new List<GameObject>();
     [Tooltip("未空的巢穴信息")] public List<GameObject> Beehive_NOEMPTY_list = new List<GameObject>();
@@ -44,7 +45,6 @@ public class HoneyComb : FindGM
         {
             for (int j = 0; j < CombSize; j++)
             {
-                
 
                 //生成蜂巢，初始化父对象，地点
                 GameObject nh = Instantiate(Beehive_obj, transform.position, transform.rotation);
@@ -63,7 +63,7 @@ public class HoneyComb : FindGM
                 {
                     x = Spacing * j;
                 }
-                nh.transform.Translate(new Vector3(Spacing * i, x, 0) - v0);
+                nh.transform.Translate(new Vector3(Spacing * i, x*1.1f, 0) - v0);
 
             }
         }
@@ -72,10 +72,8 @@ public class HoneyComb : FindGM
 
         CombMap[last_i, last_j].GetComponent<BeeHive>().state = BeeHive.BeeHiveState.STORAGEROOM;
 
-        //Build();
-
-
-
+    
+        BG_Build();
 
     }
 
@@ -83,8 +81,7 @@ public class HoneyComb : FindGM
     {
 
         Check();
-        BG_Build();
-
+     
     }
 
     void Check()
@@ -115,9 +112,11 @@ public class HoneyComb : FindGM
                         break;
                     case BeeHive.BeeHiveState.ROUGHCAST:
                         Beehive_RC_list.Add(CombMap[i, j].gameObject);
+                        CombMap[i, j].gameObject.SetActive(true);
                         break;
                     case BeeHive.BeeHiveState.STORAGEROOM:
                         Beehive_SR_list.Add(CombMap[i, j].gameObject);
+                        CombMap[i, j].gameObject.SetActive(true);
                         break;
                     default:
                         break;
@@ -146,60 +145,10 @@ public class HoneyComb : FindGM
         }
     }
 
-    public void Build()
-    {
-        //建造，其实就是改变状态，将其状态开启
-        //建立一个新的未激活物体数组，随机激活其中一个
-        List<GameObject> Next_List = new List<GameObject>();
-
-        for(int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                int y = 0;
-
-                ////判断i处于单数行还是双数行，采取差别化的
-
-
-                if (Mathf.Abs(i) == 1)
-                {
-                    if ((last_i % 2 == 0 && j == -1) || (last_i % 2 == 1 && j == 1)) //如果是双
-                    {
-                        y = -j;
-                    }
-
-                }
-
-
-                GameObject obj = CombMap[last_i + i, last_j + y];
-                if (obj.GetComponent<BeeHive>().state == BeeHive.BeeHiveState.ROUGHCAST)
-                {
-                    Next_List.Add(obj);
-                }
-            
-                
-            }
-        }
-
-        for(int i = 0; i < Next_List.Count; i++)
-        {
-            Next_List[i].SetActive(true);
-        }
-
-
-        //if (Next_List.Count > 0)
-        //{
-        //    GameObject BuildHive;
-        //    BuildHive = Next_List[(int)Mathf.Round(Random.Range(0, Next_List.Count))];
-        //    BuildHive.GetComponent<BeeHive>().state = BeeHive.BeeHiveState.STORAGEROOM;
-        //    ObjToInt(BuildHive);
-        //}
-        
-
-    }
 
     public void BG_Build()
     {
+        Check();
         if (Beehive_SR_list.Count > 0)
         {
 
@@ -207,7 +156,6 @@ public class HoneyComb : FindGM
             {
                 //将其显示出来
                 BeeHive beeHive = Beehive_SR_list[x].GetComponent<BeeHive>();
-
 
                 for (int i = -1; i <= 1; i++)
                 {

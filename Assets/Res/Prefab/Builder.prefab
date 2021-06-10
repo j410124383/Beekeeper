@@ -39,7 +39,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.59, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &617416599643637963
@@ -175,9 +175,6 @@ MonoBehaviour:
   Beehive_NOEMPTY_list: []
   Beehive_NOFULL_list: []
   Beehive_FULL_list: []
-  Workerbee_list: []
-  Drone_list: []
-  Queen: {fileID: 0}
   mark_list: []
 --- !u!114 &424417681631701681
 MonoBehaviour:
@@ -191,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0499ce3c6a661946a762f135b90b19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Count: 3
+  Max_Count: 2
   state: 1
   Food_list: []
   POLLEN_FERTILIZED_list: []
@@ -211,13 +208,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 1
   Target_Point: {x: 0, y: 0, z: 0}
-  Unload_Point: {x: 0, y: 0, z: 0}
-  PickPollen_Point: {x: 0, y: 0, z: 0}
+  Bee_Point_List: []
   Eat_Point: {x: 0, y: 0, z: 0}
-  TakeHoney_Point: {x: 0, y: 0, z: 0}
-  Build_Point: {x: 0, y: 0, z: 0}
-  Pheromones_Obj: {fileID: 4135254618605622425, guid: def6c98bd896b4141b6941a00532ec06, type: 3}
   MoveSpeed: 1
   RotateSpeed: 1
   DieTime: 1000
   HungerTime: 40
+  PickHoney_Point: {x: 0, y: 0, z: 0}
+  Build_Point: {x: 0, y: 0, z: 0}

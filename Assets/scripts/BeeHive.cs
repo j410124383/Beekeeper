@@ -13,6 +13,7 @@ public class BeeHive : FindGM
     }
 
     public BeeHiveState state = BeeHiveState.BASEGROUND;
+    public bool HaveHoney = false;
 
     public int i, j;
     public int Wax_need = 4;
@@ -22,46 +23,18 @@ public class BeeHive : FindGM
     private void Update()
     {
         ColorCheck();
-        ToSRCheck();
 
-        //¸÷ÖÖ×´Ì¬
-        switch (state)
+        if (GetComponent<Storage>().HONEY_list.Count > 0)
         {
-            case BeeHiveState.BASEGROUND:
-                gameObject.SetActive(false);
-                //GetComponent<CircleCollider2D>().enabled = false;
-                SR.color = UC.BeeHive_BG;
-                break;
-            case BeeHiveState.ROUGHCAST:
-                //GetComponent<CircleCollider2D>().enabled = true;
-                SR.color = UC.BeeHive_Roughcast;
-                break;
-            case BeeHiveState.STORAGEROOM:
-                //GetComponent<CircleCollider2D>().enabled = true;
-                SR.color = UC.BeeHive_SR_NoFill;
-                break;
-            default:
-                break;
+            HaveHoney = true;
         }
-
     }
 
-    public void ColorCheck()
+    private void ColorCheck()
     {
-
-        switch (state)
-        {
-            case BeeHiveState.ROUGHCAST:
-                SR.color = UC.BeeHive_Roughcast;
-                break;
-            case BeeHiveState.STORAGEROOM:
-                SR.color = UC.BeeHive_SR_NoFill;
-                break;
-            default:
-                break;
-        }
+        if(state == BeeHiveState.ROUGHCAST) { SR.color = UC.BeeHive_Roughcast; }
+        if (state == BeeHiveState.STORAGEROOM) { SR.color = UC.BeeHive_SR_NoFill; }
     }
-
 
     public void ToSRCheck()
     {
@@ -73,7 +46,7 @@ public class BeeHive : FindGM
             }
             state = BeeHiveState.STORAGEROOM;
         }
-
+        transform.parent.GetComponent<HoneyComb>().BG_Build();
 
     }
 

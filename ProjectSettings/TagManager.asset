@@ -11,11 +11,12 @@ TagManager:
   - GameManager
   - Builder
   - Queen
+  - Worker
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bee
   - Water
   - UI
   - 

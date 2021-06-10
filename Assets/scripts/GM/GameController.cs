@@ -124,11 +124,11 @@ public class GameController : FindGM
     }
     public void InsObj_Food()
     {
-        GM.InsOBJ = GM.Food_InsObj;
+        GM.InsOBJ = GM.Food_Obj;
     }
     public void InsObj_Worker()
     {
-        GM.InsOBJ = GM.Worker_InsObj;
+        GM.InsOBJ = GM.Worker_Obj;
     }
     public void Game_Replay()
     {

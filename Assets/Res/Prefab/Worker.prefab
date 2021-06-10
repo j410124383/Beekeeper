@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 4763509197425454586}
   - component: {fileID: 4763509197425454587}
   - component: {fileID: 4982772299897615095}
-  - component: {fileID: 4763509197425454532}
   - component: {fileID: 4763509197425454584}
   - component: {fileID: 5722165145017552831}
+  - component: {fileID: 4763509197425454532}
   m_Layer: 0
   m_Name: Worker
-  m_TagString: WorkerBee
+  m_TagString: Worker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.3, y: 8.09}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &4763509197425454533
@@ -154,30 +154,6 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 2
---- !u!114 &4763509197425454532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4763509197425454535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a54cf364b0f1f26409d8a8f523c7f360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 1
-  Target_Point: {x: 0, y: 0, z: 0}
-  Unload_Point: {x: 0, y: 0, z: 0}
-  PickPollen_Point: {x: 0, y: 0, z: 0}
-  Eat_Point: {x: 0, y: 0, z: 0}
-  TakeHoney_Point: {x: 0, y: 0, z: 0}
-  Build_Point: {x: 0, y: 0, z: 0}
-  Pheromones_Obj: {fileID: 4135254618605622425, guid: def6c98bd896b4141b6941a00532ec06, type: 3}
-  MoveSpeed: 2
-  RotateSpeed: 1
-  DieTime: 300
-  HungerTime: 50
 --- !u!114 &4763509197425454584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,9 +175,6 @@ MonoBehaviour:
   Beehive_NOEMPTY_list: []
   Beehive_NOFULL_list: []
   Beehive_FULL_list: []
-  Workerbee_list: []
-  Drone_list: []
-  Queen: {fileID: 0}
   mark_list: []
 --- !u!114 &5722165145017552831
 MonoBehaviour:
@@ -215,9 +188,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0499ce3c6a661946a762f135b90b19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Count: 1
+  Max_Count: 2
   state: 1
   Food_list: []
   POLLEN_FERTILIZED_list: []
   HONEY_list: []
   WAX_list: []
+--- !u!114 &4763509197425454532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763509197425454535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54cf364b0f1f26409d8a8f523c7f360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 1
+  Target_Point: {x: 0, y: 0, z: 0}
+  Bee_Point_List: []
+  Eat_Point: {x: 0, y: 0, z: 0}
+  MoveSpeed: 2
+  RotateSpeed: 1
+  DieTime: 300
+  HungerTime: 50
+  PickPollen_Point: {x: 0, y: 0, z: 0}
+  Unload_Point: {x: 0, y: 0, z: 0}

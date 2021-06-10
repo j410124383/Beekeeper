@@ -8,11 +8,14 @@ public class Pheromones : FindGM
 
 
     //记忆体
+    public List<Vector3> Phe_Point_List;
+    [Tooltip("记忆体-进食坐标")] public Vector3 Eat_Point;
+
     [Tooltip("记忆体-卸货坐标")] public Vector3 Unload_Point;
     [Tooltip("记忆体-采集坐标")] public Vector3 PickPollen_Point;
-    [Tooltip("记忆体-进食坐标")] public Vector3 Eat_Point;
-    [Tooltip("记忆体-拿蜜坐标")] public Vector3 TakeHoney_Point;
-    [Tooltip("记忆体-建造坐标")] public  Vector3 Build_Point;
+
+    [Tooltip("记忆体-拿蜜坐标")] public Vector3 PickHoney_Point;
+    [Tooltip("记忆体-建造坐标")] public Vector3 Build_Point;
 
     [Tooltip("存留时间")]public float DieTime;
     public float StartDieTime ;
@@ -24,6 +27,16 @@ public class Pheromones : FindGM
     protected override void Awake()
     {
         base.Awake();
+
+        Phe_Point_List = new List<Vector3>
+        {
+            Eat_Point,
+            Unload_Point,
+            PickPollen_Point,
+            PickHoney_Point,
+            Build_Point,
+        };
+
 
         StartDieTime = DieTime;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,10 +15,10 @@ public class GameManager : MonoBehaviour
     }
 
     [Tooltip("衍生物预制体")] public GameObject InsOBJ ;
-    [Tooltip("食物预制体")] public GameObject Food_InsObj;
-    [Tooltip("工蜂预制体")] public GameObject Worker_InsObj;
-
-
+    [Tooltip("生产花粉的预制体")] public GameObject Food_Obj;
+    [Tooltip("工蜂预制体")] public GameObject Worker_Obj;
+    [Tooltip("建筑蜂预制体")] public GameObject Builder_Obj;
+    [Tooltip("信息素预制体")] public GameObject Pheromones_Obj;
 
     //信息储存
     public int TimeSpeed = 1;
@@ -44,8 +45,15 @@ public class GameManager : MonoBehaviour
     public Text text;
 
 
-
-    void Update()
+    private void Awake()
+    {
+        Food_Obj = AssetDatabase.LoadAssetAtPath("Assets/Res/Prefab/Food.prefab", typeof(GameObject)) as GameObject;
+        Worker_Obj=AssetDatabase.LoadAssetAtPath("Assets/Res/Prefab/Worker.prefab", typeof(GameObject)) as GameObject;
+        Builder_Obj = AssetDatabase.LoadAssetAtPath("Assets/Res/Prefab/Builder.prefab", typeof(GameObject)) as GameObject;
+        Pheromones_Obj = AssetDatabase.LoadAssetAtPath("Assets/Res/Prefab/Pheromones.prefab", typeof(GameObject)) as GameObject;
+       
+    }
+    private void Update()
     {
         //时间系统
         bee_Time[0] += Time.deltaTime* TimeSpeed;
