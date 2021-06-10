@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 4135254618605622425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.125, y: 0.125, z: 0.125}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -66,9 +66,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c453d018769b2254f9c18be59806cf8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hive_Last: {x: 0, y: 0, z: 0}
-  food_Last: {x: 0, y: 0, z: 0}
-  DieTime: 25
+  Unload_Point: {x: 0, y: 0, z: 0}
+  PickPollen_Point: {x: 0, y: 0, z: 0}
+  Eat_Point: {x: 0, y: 0, z: 0}
+  TakeHoney_Point: {x: 0, y: 0, z: 0}
+  Build_Point: {x: 0, y: 0, z: 0}
+  DieTime: 50
+  StartDieTime: 0
 --- !u!212 &5168011730869794084
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -108,9 +112,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f,
-    type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
   m_Color: {r: 0, g: 1, b: 0.8429804, a: 1}
   m_FlipX: 0
   m_FlipY: 0

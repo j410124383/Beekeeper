@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Garden : FindGM
 {
@@ -15,7 +16,7 @@ public class Garden : FindGM
 
     [Tooltip("初始花粉的数量")] public int StartGrowCount;
 
-    [Tooltip("生产花粉的预制体")] public GameObject Seed;
+    [Tooltip("生产花粉的预制体")] protected GameObject Food_obj;
 
 
     
@@ -26,6 +27,7 @@ public class Garden : FindGM
         base.Awake();
 
         StartGrowTime = GrowTime;
+        Food_obj = AssetDatabase.LoadAssetAtPath("Assets/Res/Prefab/Food.prefab", typeof(GameObject)) as GameObject;
 
         //初始生成花粉地图
         for (int i=0;i<StartGrowCount;i++)
@@ -54,7 +56,7 @@ public class Garden : FindGM
         float x2 = Random.Range(-grow_size/2,grow_size/2);
         Vector3 v1 = transform.position + new Vector3(x1,x2,0);
 
-        GameObject food = Instantiate(Seed, v1, transform.rotation);
+        GameObject food = Instantiate(Food_obj, v1, transform.rotation);
         food.transform.SetParent(this.transform);
 
         //print("生产种子");

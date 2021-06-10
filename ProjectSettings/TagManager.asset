@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Beehive
+  - Food
+  - WorkerBee
+  - Mark
+  - GameManager
+  - Builder
+  - Queen
   layers:
   - Default
   - TransparentFX

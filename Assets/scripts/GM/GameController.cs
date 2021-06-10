@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : FindGM
 {
@@ -116,6 +117,28 @@ public class GameController : FindGM
         //根据int来调整时间
         button.GetComponent<Text>().text = "Speed X" + GM.TimeSpeed;
     }
+
+    public void InsObj_Null()
+    {
+        GM.InsOBJ = null;
+    }
+    public void InsObj_Food()
+    {
+        GM.InsOBJ = GM.Food_InsObj;
+    }
+    public void InsObj_Worker()
+    {
+        GM.InsOBJ = GM.Worker_InsObj;
+    }
+    public void Game_Replay()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void Game_Quit()
+    {
+        Application.Quit();
+    }
+
 
 
 }

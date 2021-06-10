@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7672702477355056722}
   - component: {fileID: 256990791547862383}
   - component: {fileID: 4495105879838264195}
+  - component: {fileID: 3729364456198450675}
   m_Layer: 0
   m_Name: Beehive
   m_TagString: Beehive
@@ -46,7 +47,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7672702477355056727}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -54,7 +55,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.05
 --- !u!212 &7672702477355056722
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,9 +95,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 988388304942147450, guid: 9819bdb4a2607ba4bb84bf01c0625db7, type: 3}
-  m_Color: {r: 0.8584906, g: 0.6167539, b: 0.42438588, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,7 +127,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 1
   m_StartAxis: 1
-  m_CellSize: {x: 0.25, y: 0.25}
+  m_CellSize: {x: 0.2, y: 0.2}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 3
@@ -143,8 +144,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Max_Count: 9
-  IsFull: 0
-  IsEmpty: 1
+  state: 1
   Food_list: []
-  Pollen_list: []
-  Honey_list: []
+  POLLEN_FERTILIZED_list: []
+  HONEY_list: []
+  WAX_list: []
+--- !u!114 &3729364456198450675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672702477355056727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c688fc9bbe9baa144a3be4f837872715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  i: 0
+  j: 0
+  Wax_need: 4

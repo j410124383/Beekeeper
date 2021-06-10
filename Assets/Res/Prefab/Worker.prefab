@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4763509197425454584}
   - component: {fileID: 5722165145017552831}
   m_Layer: 0
-  m_Name: WorkerBee_Body
+  m_Name: Worker
   m_TagString: WorkerBee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 988388304942147450, guid: 9819bdb4a2607ba4bb84bf01c0625db7, type: 3}
-  m_Color: {r: 1, g: 0.57420474, b: 0.12549019, a: 1}
+  m_Color: {r: 1, g: 0.90428495, b: 0.12549019, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 0.25, y: 0.25}
+  m_CellSize: {x: 0.2, y: 0.2}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 2
@@ -166,13 +166,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a54cf364b0f1f26409d8a8f523c7f360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 1
   Target_Point: {x: 0, y: 0, z: 0}
   Unload_Point: {x: 0, y: 0, z: 0}
-  Work_Point: {x: 0, y: 0, z: 0}
+  PickPollen_Point: {x: 0, y: 0, z: 0}
   Eat_Point: {x: 0, y: 0, z: 0}
-  Pheromonesb_Obj: {fileID: 4135254618605622425, guid: def6c98bd896b4141b6941a00532ec06,
-    type: 3}
+  TakeHoney_Point: {x: 0, y: 0, z: 0}
+  Build_Point: {x: 0, y: 0, z: 0}
+  Pheromones_Obj: {fileID: 4135254618605622425, guid: def6c98bd896b4141b6941a00532ec06, type: 3}
   MoveSpeed: 2
+  RotateSpeed: 1
   DieTime: 300
   HungerTime: 50
 --- !u!114 &4763509197425454584
@@ -188,15 +191,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SearchRadius: 10
-  Queen: {fileID: 0}
   Food_list: []
-  Pollen_list: []
-  Honey_list: []
   Beehive_list: []
-  Beehive_Nofull_list: []
-  Beehive_NoEmpty_list: []
+  Beehive_ROUGHCAST_list: []
+  Beehive_STORAGEROOM_list: []
+  Beehive_EMPTY_list: []
+  Beehive_NOEMPTY_list: []
+  Beehive_NOFULL_list: []
+  Beehive_FULL_list: []
   Workerbee_list: []
   Drone_list: []
+  Queen: {fileID: 0}
   mark_list: []
 --- !u!114 &5722165145017552831
 MonoBehaviour:
@@ -210,9 +215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0499ce3c6a661946a762f135b90b19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Count: 2
-  IsFull: 0
-  IsEmpty: 1
+  Max_Count: 1
+  state: 1
   Food_list: []
-  Pollen_list: []
-  Honey_list: []
+  POLLEN_FERTILIZED_list: []
+  HONEY_list: []
+  WAX_list: []

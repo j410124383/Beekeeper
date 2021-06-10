@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
+    public enum State
+    {
+        EMPTY,
+        EXIST,
+        FULL
+    }
+
+
     //存储库
     public int Max_Count;
-    [Tooltip("是否为满")] public bool IsFull = false;
-    [Tooltip("是否为空")] public bool IsEmpty = true;
+    public State state =State.EXIST;
 
     //食物
     [Tooltip("食物信息")] public List<GameObject> Food_list = new List<GameObject>();
-    [Tooltip("未激活的食物信息")] public List<GameObject> Pollen_list = new List<GameObject>();
-    [Tooltip("已酿造完成的食物信息")] public List<GameObject> Honey_list = new List<GameObject>();
+    //[Tooltip("未受精花粉")] public List<GameObject> POLLEN_list = new List<GameObject>();
+    [Tooltip("已受精花粉")] public List<GameObject> POLLEN_FERTILIZED_list = new List<GameObject>();
+    [Tooltip("蜂蜜")] public List<GameObject> HONEY_list = new List<GameObject>();
+    [Tooltip("蜜蜡")] public List<GameObject> WAX_list = new List<GameObject>();
 
     private List<List<GameObject>> Alist;
 
@@ -22,17 +31,17 @@ public class Storage : MonoBehaviour
         //告诉程序，一共有多少个list需要排序，
         Alist = new List<List<GameObject>>
         {
-            Pollen_list,
             Food_list,
-            Honey_list,
+            //POLLEN_list,
+            POLLEN_FERTILIZED_list,
+            HONEY_list,
+            WAX_list
 
         };
     }
 
     void Update()
     {
-
-
         Check();
     }
 
@@ -54,32 +63,38 @@ public class Storage : MonoBehaviour
             {
                 Food_list.Add(child.gameObject);
 
-                //未激活
-                if (child.GetComponent<Food>().IsBeActivate != true)
+                switch (child.GetComponent<Food>().state)
                 {
-                    Pollen_list.Add(child.gameObject);
-                }
-                //已酿造完成
-                if (child.GetComponent<Food>().IsBrew == true)
-                {
-                    Honey_list.Add(child.gameObject);
+                    //case Food.State.POLLEN:
+                    //    POLLEN_list.Add(child.gameObject);
+                    //    break;
+                    case Food.State.POLLEN_FERTILIZED:
+                        POLLEN_FERTILIZED_list.Add(child.gameObject);
+                        break;
+                    case Food.State.HONEY:
+                        HONEY_list.Add(child.gameObject);
+                        break;
+                    case Food.State.WAX:
+                        WAX_list.Add(child.gameObject);
+                        break;
+                    default:
+                        break;
                 }
             }
         }
 
         //当存储蜜蜂低于最大值，则full is false
-        if (Food_list.Count < Max_Count )
+        if (Food_list.Count < Max_Count && Food_list.Count > 0)
         {
-            IsFull = false;
+            state = State.EXIST;
         }
-        else { IsFull = true; }
-
-
-        if (Food_list.Count == 0)
+        if(Food_list.Count ==0){
+            state = State.EMPTY;
+        }
+        if (Food_list.Count == Max_Count)
         {
-            IsEmpty = true;
+            state = State.FULL;
         }
-        else { IsEmpty = false; }
 
     }
 

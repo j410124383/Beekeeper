@@ -65,31 +65,31 @@ public class Queen : MonoBehaviour
     public void Action()
     {
         //如果是饥饿状态，则去吃饭，否则工作
-        if (HungerTime <= 0)
-        {
-            //进食
-            List<GameObject> L = GetComponent<Bee_Search>().Honey_list;
-            if (L.Count > 0 && L[0] != null)
-            {
-                Target_Point = L[0].transform.position;
-            }
-            else { Target_Point = Eat_Point; }
+        //if (HungerTime <= 0)
+        //{
+        //    //进食
+        //    List<GameObject> L = GetComponent<Bee_Search>().HONEY_list;
+        //    if (L.Count > 0 && L[0] != null)
+        //    {
+        //        Target_Point = L[0].transform.position;
+        //    }
+        //    else { Target_Point = Eat_Point; }
 
-        }
-        else
-        {
-            //不饿的话就生孩子
-            if (BornTime<=0)
-            {
-                //回家
-                List<GameObject> L = GetComponent<Bee_Search>().Beehive_list;
-                if (L.Count > 0)
-                {
-                    Target_Point = L[0].transform.position;
-                }
-                else { Target_Point = Born_Point; }
-            }
-        }
+        //}
+        //else
+        //{
+        //    //不饿的话就生孩子
+        //    if (BornTime<=0)
+        //    {
+        //        //回家
+        //        List<GameObject> L = GetComponent<Bee_Search>().Beehive_list;
+        //        if (L.Count > 0)
+        //        {
+        //            Target_Point = L[0].transform.position;
+        //        }
+        //        else { Target_Point = Born_Point; }
+        //    }
+        //}
 
 
 
@@ -102,7 +102,7 @@ public class Queen : MonoBehaviour
     {
         Food food_col = col.GetComponent<Food>();
         //进食
-        if (col.tag == "Food" && HungerTime <= 0 && food_col.IsBrew == true)
+        if (col.tag == "Food" && HungerTime <= 0 && food_col.state==Food.State.HONEY)
         {
             //销毁蜂蜜，刷新饥饿值
             food_col.Die();

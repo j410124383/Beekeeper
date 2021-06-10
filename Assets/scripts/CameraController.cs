@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     public void Update()
     {
         // 右键移动
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
         {
             // 获取鼠标的x和y的值，乘以速度和Time.deltaTime是因为这个可以是运动起来更平滑  
             float h = Input.GetAxis("Mouse X") * CamMoveSpeed * Time.deltaTime;
