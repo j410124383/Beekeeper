@@ -304,7 +304,7 @@ MonoBehaviour:
   BeeHive_SR_Fill: {r: 1, g: 0.34117648, b: 0, a: 1}
   Food_Pollen: {r: 1, g: 1, b: 1, a: 1}
   Food_Honey: {r: 1, g: 0.79816157, b: 0, a: 1}
-  Food_Wax: {r: 1, g: 0.34283188, b: 0, a: 1}
+  Food_Wax: {r: 0.7529412, g: 0.4509804, b: 0.09019608, a: 1}
   Bee_Worker: {r: 1, g: 0.85566986, b: 0, a: 1}
   Bee_Builder: {r: 0.654902, g: 1, b: 0, a: 1}
   Bee_Done: {r: 1, g: 0, b: 0.30541182, a: 1}

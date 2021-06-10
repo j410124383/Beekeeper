@@ -28,15 +28,16 @@ public class BeeHive : FindGM
         switch (state)
         {
             case BeeHiveState.BASEGROUND:
-                GetComponent<CircleCollider2D>().enabled = false;
+                gameObject.SetActive(false);
+                //GetComponent<CircleCollider2D>().enabled = false;
                 SR.color = UC.BeeHive_BG;
                 break;
             case BeeHiveState.ROUGHCAST:
-                GetComponent<CircleCollider2D>().enabled = true;
+                //GetComponent<CircleCollider2D>().enabled = true;
                 SR.color = UC.BeeHive_Roughcast;
                 break;
             case BeeHiveState.STORAGEROOM:
-                GetComponent<CircleCollider2D>().enabled = true;
+                //GetComponent<CircleCollider2D>().enabled = true;
                 SR.color = UC.BeeHive_SR_NoFill;
                 break;
             default:
@@ -72,5 +73,10 @@ public class BeeHive : FindGM
             }
             state = BeeHiveState.STORAGEROOM;
         }
+
+
     }
+
+
+
 }

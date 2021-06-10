@@ -71,7 +71,7 @@ MonoBehaviour:
   Eat_Point: {x: 0, y: 0, z: 0}
   TakeHoney_Point: {x: 0, y: 0, z: 0}
   Build_Point: {x: 0, y: 0, z: 0}
-  DieTime: 50
+  DieTime: 20
   StartDieTime: 0
 --- !u!212 &5168011730869794084
 SpriteRenderer:

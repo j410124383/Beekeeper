@@ -222,7 +222,7 @@ public class HoneyComb : FindGM
                             {
                                 y = -j;
                             }
-
+                            else { y = j; }
                         }
                         else { y = j; }
 
@@ -230,7 +230,7 @@ public class HoneyComb : FindGM
                         //print((beeHive.i + i) + "," + (beeHive.j + y));
                         if (obj.GetComponent<BeeHive>().state ==BeeHive.BeeHiveState.BASEGROUND)
                         {
-                            
+                            obj.SetActive(true);
                             obj.GetComponent<BeeHive>().state = BeeHive.BeeHiveState.ROUGHCAST;
                         }
                         Check();
